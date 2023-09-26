@@ -3,8 +3,10 @@ require_once '../classes/paints.php';
 
 use PHPUnit\Framework\TestCase;
 
-class PaintsTest extends TestCase {
-    public function testPaintsGetIdReturnInt() {
+class PaintsTest extends TestCase
+{
+    public function testPaintsGetIdReturnInt()
+    {
         $testPaint = new paints();
         $testPaint->setId(1);
         $actual = $testPaint->getId();
@@ -12,7 +14,8 @@ class PaintsTest extends TestCase {
         $this->assertIsInt($actual);
     }
 
-    public function testPaintsGetBrandNameReturnString() {
+    public function testPaintsGetBrandNameReturnString()
+    {
         $testPaint = new paints();
         $testPaint->setBrandName('Test Brand');
         $actual = $testPaint->getBrandName();
@@ -20,7 +23,8 @@ class PaintsTest extends TestCase {
         $this->assertIsString($actual);
     }
 
-    public function testPaintsGetColourNameReturnsString() {
+    public function testPaintsGetColourNameReturnsString()
+    {
         $testPaint = new paints();
         $testPaint->setColourName('Test Colour');
         $actual = $testPaint->getColourName();
@@ -28,7 +32,8 @@ class PaintsTest extends TestCase {
         $this->assertIsString($actual);
     }
 
-    public function testPaintsGetNeedReplacingReturnString() {
+    public function testPaintsGetNeedReplacingReturnString()
+    {
         $testPaint = new Paints();
         $testPaint->setNeedReplacing(1);
         $actual = $testPaint->getNeedReplacing();
@@ -36,7 +41,8 @@ class PaintsTest extends TestCase {
         $this->assertIsString($actual);
     }
 
-    public function testPaintsGetNeedReplacing1ReturnYes() {
+    public function testPaintsGetNeedReplacing1ReturnYes()
+    {
         $testPaint = new Paints ();
         $testPaint->setNeedReplacing(1);
         $actual = $testPaint->getNeedReplacing();
@@ -45,7 +51,8 @@ class PaintsTest extends TestCase {
         $this->assertEquals($actual, $expected);
     }
 
-    public function testPaintsGetNeedReplacingReturnNo() {
+    public function testPaintsGetNeedReplacingReturnNo()
+    {
         $testPaint = new Paints ();
         $testPaint->setNeedReplacing(0);
         $actual = $testPaint->getNeedReplacing();
@@ -54,7 +61,8 @@ class PaintsTest extends TestCase {
         $this->assertEquals($actual, $expected);
     }
 
-    public function testPaintsGetImageNullReturnNoImage() {
+    public function testPaintsGetImageNullReturnNoImage()
+    {
         $testPaint = new Paints ();
         $testPaint->setImage('');
         $actual = $testPaint->getImage();
