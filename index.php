@@ -32,7 +32,7 @@ require_once 'classes/paints.php';
 </head>
 
 <body>
-<div class="grid">
+
     <header>
         <h1>Paint Collection App</h1>
     </header>
@@ -40,7 +40,7 @@ require_once 'classes/paints.php';
     <nav>
         <a href=""><i class="fa-solid fa-plus"></i>Add New Paint</a>
     </nav>
-
+    <div class="grid">
     <!--Container for each paint card - repeated for each item-->
     <?php
     foreach ($paints as $paint) {
@@ -55,16 +55,16 @@ require_once 'classes/paints.php';
                     <div class="paint-info">
             <table>
                 <tr>
-                    <td>Brand:</td>
-                    <td>' . $paint->getBrandName() . '</td>
+                    <td class="attribute">Brand:</td>
+                    <td class="info">' . $paint->getBrandName() . '</td>
                 </tr>
                 <tr>
-                    <td>Colour:</td>
-                    <td>' . $paint->getColourName() . '</td>
+                    <td class="attribute">Colour:</td>
+                    <td class="info">' . $paint->getColourName() . '</td>
                 </tr>
                 <tr>
-                    <td>Needs replacing?</td>
-                    <td>' . $paint->getNeedReplacing() . '</td>
+                    <td class="attribute">Needs replacing?</td>
+                    <td class="info">' . $paint->getNeedReplacing() . '</td>
                 </tr>
             </table>
         </div>
