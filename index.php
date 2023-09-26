@@ -1,3 +1,8 @@
+<?php
+require_once 'fetchdb.php';
+require_once 'classes/paints.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,28 +38,35 @@
     </nav>
 
     <!--Container for each paint card - repeated for each item-->
-    <section class="paint-container">
-        <div class="image-container">
-            <img alt='placeholder image' src="https://placedog.net/150/150">
-        </div>
-        <div class="paint-info">
+    <?php
+       foreach ($paints as $paint) {
+           echo '<section class="paint-container">
+                 <div class="image-container">';
+           if ($paint->getImage() == "No Image") {
+               echo '<p>No Image Available</p>';
+           } else {
+               echo '<img alt="Image of paint" src=' . $paint->getImage() . '>';
+           }
+           echo '</div>
+                    <div class="paint-info">
             <table>
                 <tr>
                     <td>Brand:</td>
-                    <td>brand name</td>
+                    <td>' . $paint->getBrandName() . '</td>
                 </tr>
                 <tr>
                     <td>Colour:</td>
-                    <td>colour</td>
+                    <td>' . $paint->getColourName() . '</td>
                 </tr>
                 <tr>
                     <td>Needs replacing?</td>
-                    <td>yes/no</td>
+                    <td>' . $paint->getNeedReplacing() . '</td>
                 </tr>
             </table>
         </div>
-    </section>
-
+    </section>';
+       }
+    ?>
 
     <footer>
         Claudia Lim 2023
