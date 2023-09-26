@@ -20,6 +20,10 @@ require_once 'classes/paints.php';
           crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="css/styles.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Cutive+Mono&display=swap" rel="stylesheet">
+
     <link rel="icon" href="images/paint-svgrepo-com.svg" sizes="192x192">
     <link rel="shortcut icon" href="images/paint-svgrepo-com.svg">
     <link rel="apple-touch-icon" href="images/paint-svgrepo-com.svg">
@@ -28,7 +32,7 @@ require_once 'classes/paints.php';
 </head>
 
 <body>
-<div class="grid">
+
     <header>
         <h1>Paint Collection App</h1>
     </header>
@@ -36,7 +40,7 @@ require_once 'classes/paints.php';
     <nav>
         <a href=""><i class="fa-solid fa-plus"></i>Add New Paint</a>
     </nav>
-
+    <div class="grid">
     <!--Container for each paint card - repeated for each item-->
     <?php
     foreach ($paints as $paint) {
@@ -51,26 +55,26 @@ require_once 'classes/paints.php';
                     <div class="paint-info">
             <table>
                 <tr>
-                    <td>Brand:</td>
-                    <td>' . $paint->getBrandName() . '</td>
+                    <td class="attribute">Brand:</td>
+                    <td class="info">' . $paint->getBrandName() . '</td>
                 </tr>
                 <tr>
-                    <td>Colour:</td>
-                    <td>' . $paint->getColourName() . '</td>
+                    <td class="attribute">Colour:</td>
+                    <td class="info">' . $paint->getColourName() . '</td>
                 </tr>
                 <tr>
-                    <td>Needs replacing?</td>
-                    <td>' . $paint->getNeedReplacing() . '</td>
+                    <td class="attribute">Needs replacing?</td>
+                    <td class="info">' . $paint->getNeedReplacing() . '</td>
                 </tr>
             </table>
         </div>
     </section>';
     }
     ?>
-
+</div>
     <footer>
         Claudia Lim 2023
     </footer>
-</div>
+
 </body>
 </html>
