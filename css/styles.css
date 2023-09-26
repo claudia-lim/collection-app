@@ -1,0 +1,12 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --colour1: #ffffff;
+  --colour2: #f3edec;
+  --colour3: #ccb3b7;
+  --colour4: #bbadb6;
+  --colour5: #938494;
+  --colour6: #6f5770;
+}
