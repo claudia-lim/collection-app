@@ -10,3 +10,61 @@
   --colour5: #938494;
   --colour6: #6f5770;
 }
+
+body {
+  font-family: 'Cutive Mono', monospace;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+header {
+  background-image: url('https://i.ibb.co/h7NV4B4/yellow-and-purple-colour-exercise-sketchbook.jpg');
+  background-size: cover;
+  height: 20vh;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--colour6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: span 2;
+}
+
+nav {
+  grid-column: span 2;
+}
+
+section {
+  grid-column: span 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  /*border: solid 2px black;*/
+  padding: 0.5rem;
+  margin: 1rem;
+}
+
+.image-container {
+  /*border: solid 2px green;*/
+  display: flex;
+
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.paint-info {
+  /*border: solid 2px red;*/
+  width: 15rem;
+}
+
+@media only screen and (max-width: 700px) {
+  section {
+    grid-column: 1/3;
+  }
+}
