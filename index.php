@@ -39,15 +39,15 @@ require_once 'classes/paints.php';
 
     <!--Container for each paint card - repeated for each item-->
     <?php
-       foreach ($paints as $paint) {
-           echo '<section class="paint-container">
+    foreach ($paints as $paint) {
+        echo '<section class="paint-container">
                  <div class="image-container">';
-           if ($paint->getImage() == "No Image") {
-               echo '<p>No Image Available</p>';
-           } else {
-               echo '<img alt="Image of paint" src=' . $paint->getImage() . '>';
-           }
-           echo '</div>
+        if ($paint->getImage() == "No Image") {
+            echo '<p>No Image Available</p>';
+        } else {
+            echo '<img alt="Image of paint" src=' . $paint->getImage() . '>';
+        }
+        echo '</div>
                     <div class="paint-info">
             <table>
                 <tr>
@@ -65,7 +65,7 @@ require_once 'classes/paints.php';
             </table>
         </div>
     </section>';
-       }
+    }
     ?>
 
     <footer>

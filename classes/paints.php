@@ -1,4 +1,5 @@
 <?php
+
 class paints
 {
 
@@ -40,10 +41,9 @@ class paints
 
     public function getNeedReplacing(): string
     {
-        if ($this->need_replacing == 1){
+        if ($this->need_replacing == 1) {
             return 'Yes';
-        }
-        else {
+        } else {
             return 'No';
         }
     }
@@ -55,10 +55,9 @@ class paints
 
     public function getImage(): string
     {
-        if (!$this->image){
+        if (!$this->image) {
             return 'No Image';
-        }
-        else {
+        } else {
             return $this->image;
         }
     }
@@ -67,24 +66,5 @@ class paints
     {
         $this->image = $image;
     }
-
-
-
-//public function __construct(int $id, string $brand_name, string $colour_name, int $need_replacing, string $image)
-//{
-//    $this->id = $id;
-//    $this->brand_name = $brand_name;
-//    $this->colour_name = $colour_name;
-//    $this->need_replacing = $need_replacing;
-//    if (!$image)
-//    {
-//        $this->image = 'No Image available';
-//    }
-//    else {
-//        $this->image = $image;
-//    }
-//}
-
-
 
 }
