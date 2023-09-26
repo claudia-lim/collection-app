@@ -1,5 +1,5 @@
 <?php
-require_once '../classes/paints.php';
+require_once '../classes/Paints.php';
 
 use PHPUnit\Framework\TestCase;
 
@@ -7,7 +7,7 @@ class PaintsTest extends TestCase
 {
     public function testPaintsGetIdReturnInt()
     {
-        $testPaint = new paints();
+        $testPaint = new Paints();
         $testPaint->setId(1);
         $actual = $testPaint->getId();
 
@@ -16,7 +16,7 @@ class PaintsTest extends TestCase
 
     public function testPaintsGetBrandNameReturnString()
     {
-        $testPaint = new paints();
+        $testPaint = new Paints();
         $testPaint->setBrandName('Test Brand');
         $actual = $testPaint->getBrandName();
 
@@ -25,7 +25,7 @@ class PaintsTest extends TestCase
 
     public function testPaintsGetColourNameReturnsString()
     {
-        $testPaint = new paints();
+        $testPaint = new Paints();
         $testPaint->setColourName('Test Colour');
         $actual = $testPaint->getColourName();
 

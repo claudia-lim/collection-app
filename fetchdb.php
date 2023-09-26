@@ -1,5 +1,5 @@
 <?php
-require_once 'classes/paints.php';
+require_once 'classes/Paints.php';
 $host = 'db';
 $db = 'collection_app';
 $user = 'root';
@@ -24,8 +24,5 @@ $query = $pdo->prepare(
 
 $query->execute();
 
-$paints = $query->fetchAll(PDO::FETCH_CLASS, 'paints');
+$paints = $query->fetchAll(PDO::FETCH_CLASS, 'Paints');
 
-//echo '<pre>';
-//print_r($paints);
-//echo '</pre>';

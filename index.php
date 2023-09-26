@@ -1,6 +1,6 @@
 <?php
 require_once 'fetchdb.php';
-require_once 'classes/paints.php';
+require_once 'classes/Paints.php';
 ?>
 
 <!DOCTYPE html>

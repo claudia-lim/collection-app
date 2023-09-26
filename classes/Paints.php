@@ -1,6 +1,6 @@
 <?php
 
-class paints
+class Paints
 {
 
     private int $id;
