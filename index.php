@@ -15,12 +15,11 @@
           crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="css/styles.css">
 
-    <link rel="icon" href="images/favicon.png" sizes="192x192">
-    <link rel="shortcut icon" href="images/favicon.png">
-    <link rel="apple-touch-icon" href="images/favicon.png">
+    <link rel="icon" href="images/paint-svgrepo-com.svg" sizes="192x192">
+    <link rel="shortcut icon" href="images/paint-svgrepo-com.svg">
+    <link rel="apple-touch-icon" href="images/paint-svgrepo-com.svg">
 
     <!-- <script defer src="js/index.js"></script> -->
-
 </head>
 
 <body>
@@ -33,6 +32,7 @@
         <a href=""><i class="fa-solid fa-plus"></i>Add New Paint</a>
     </nav>
 
+    <!--Container for each paint card - repeated for each item-->
     <section class="paint-container">
         <div class="image-container">
             <img alt='placeholder image' src="https://placedog.net/150/150">
