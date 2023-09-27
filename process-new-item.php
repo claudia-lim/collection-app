@@ -86,10 +86,10 @@ if (in_array($colourFormInput, $colourList)) {
 }
 else {
     echo 'Colour needs to be added to Colours table';
-    $sqlInsertColour = 'INSERT INTO `colours`(`name`) VALUES (:name);';
-    $sqlInsertColour->bindParam(":name", $colourFormInput);
-    $queryColour = $pdo->prepare($sqlInsertColour);
+    $sqlInsertColour = "INSERT INTO `colours`(`name`) VALUES (:name);";
 
+    $queryColour = $pdo->prepare($sqlInsertColour);
+    $queryColour->bindParam(":name", $colourFormInput);
     $queryColour->execute();
 }
 
