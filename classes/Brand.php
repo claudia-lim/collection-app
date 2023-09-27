@@ -2,8 +2,8 @@
 
 class Brand
 {
-private string $brand_name;
-private int $brand_id;
+    private string $brand_name;
+    private int $brand_id;
 
     public function getBrand(): string
     {
