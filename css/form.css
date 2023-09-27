@@ -54,6 +54,13 @@ button {
     color: var(--colour7);
 }
 
+h3 {
+    background-color: var(--colour5);
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
 
 
 

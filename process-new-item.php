@@ -1,6 +1,7 @@
 <?php
 require_once 'fetchdb.php';
 require_once 'classes/Paints.php';
+require_once 'functions-process-new-item.php';
 ?>
 
 <!DOCTYPE html>
@@ -50,13 +51,13 @@ $colourFormInput = $_POST['colour-input'];
 $needReplacingFormInput = $_POST['need-replacing'];
 $imageFormInput = $_POST['image-url'];
 
+
 echo '<div class = "new-item">'
-    . '<h2>New Item added</h2>'
+    . '<h2>New Item</h2>'
     . '<p>Brand: ' . $brandFormInput . '</p>'
     . '<p>Colour: ' . $colourFormInput . '</p>'
     . '<p>Need Replacing? ' . $needReplacingFormInput . '</p>'
-    . '<p>Image URL: ' . $imageFormInput . '</p>'
-    . '</div>';
+    . '<p>Image URL: ' . $imageFormInput . '</p>';
 
 if (in_array($brandFormInput, $brandList)) {
     $brandInputId = array_search($brandFormInput, $brandList);
@@ -102,15 +103,34 @@ if ($needReplacingFormInput == 'Yes') {
     $needReplacingInputBool = 0;
 }
 
-$sqlInsertPaint = 'INSERT INTO `paints` (`brand_id`, `colour_id`, `needs_replacing`, `image`)
+$newPaint = new Paints;
+$newPaint->setBrandName($brandFormInput);
+$newPaint->setColourName($colourFormInput);
+$newPaint->setNeedReplacing($needReplacingInputBool);
+$newPaint->setImage($imageFormInput);
+
+
+$alreadyInCollection = alreadyInCollection($paints, $newPaint);
+$validImageInput = validImageInput($imageFormInput);
+
+if ($alreadyInCollection) {
+    echo '<h3 class="form-feedback">Already in Collection - Not added</h3>';
+} elseif (!$validImageInput) {
+    echo '<h3 class="form-feedback">Invalid image input - try again</h3>';
+} else {
+    $sqlInsertPaint = 'INSERT INTO `paints` (`brand_id`, `colour_id`, `needs_replacing`, `image`)
 VALUES (:brand_id, :colour_id, :needs_replacing, :image)';
 
-$queryNewPaint = $pdo->prepare($sqlInsertPaint);
-$queryNewPaint->bindParam(":brand_id", $brandInputId);
-$queryNewPaint->bindParam(":colour_id", $colourInputId);
-$queryNewPaint->bindParam(":needs_replacing", $needReplacingInputBool);
-$queryNewPaint->bindParam(":image", $imageFormInput);
-$queryNewPaint->execute();
+    $queryNewPaint = $pdo->prepare($sqlInsertPaint);
+    $queryNewPaint->bindParam(":brand_id", $brandInputId);
+    $queryNewPaint->bindParam(":colour_id", $colourInputId);
+    $queryNewPaint->bindParam(":needs_replacing", $needReplacingInputBool);
+    $queryNewPaint->bindParam(":image", $imageFormInput);
+    $queryNewPaint->execute();
+    echo "<h3 class='form-feedback'>New paint added to collection.</h3>";
+}
+
+echo '</div>';
 ?>
 
 <footer>
