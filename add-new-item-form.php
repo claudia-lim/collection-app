@@ -49,12 +49,27 @@ require_once 'classes/Paints.php';
     <form method="post" action="process-new-item.php">
         <div class="form-input">
             <label for="brand-input">Brand Name: </label>
-            <input type="text" id="brand-input" name="brand-input" required>
+            <input list="brand-options" id="brand-input" name="brand-input" required>
+            <datalist id="brand-options">
+                <?php
+                foreach ($brands as $brand) {
+                    echo '<option value="' . $brand->getBrand() . '">';
+                }
+                ?>
+            </datalist>
         </div>
 
         <div class="form-input">
             <label for="colour-input">Colour:</label>
-            <input type="text" id="colour-input" name="colour-input" required>
+            <input list="colours-options" id="colour-input" name="colour-input" required>
+
+            <datalist id="colours-options">
+                <?php
+                foreach ($colours as $colour) {
+                    echo '<option value="' . $colour->getColour() . '">';
+                }
+                ?>
+            </datalist>
         </div>
 
         <div class="form-input">
