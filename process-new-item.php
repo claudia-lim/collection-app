@@ -41,72 +41,77 @@ require_once 'classes/Paints.php';
 
 <nav>
     <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
+    <a href="add-new-item-form.php"><i class="fa-solid fa-plus"></i> Add New Paint</a>
 </nav>
-
-    <h2>Add New Paint</h2>
 
 <?php
 $brandFormInput = $_POST['brand-input'];
-
 $colourFormInput = $_POST['colour-input'];
-
 $needReplacingFormInput = $_POST['need-replacing'];
-
 $imageFormInput = $_POST['image-url'];
 
-echo '<p>New Item</p>'
-. '<p>Brand: ' . $brandFormInput . '</p>'
-. '<p>Colour: ' . $colourFormInput . '</p>'
-. '<p>Need Replacing? ' . $needReplacingFormInput . '</p>'
-. '<p>Image URL: ' . $imageFormInput . '</p>';
-
-echo '<pre>';
-print_r($brandList);
-echo '</pre>';
+echo '<div class = "new-item">'
+    . '<h2>New Item added</h2>'
+    . '<p>Brand: ' . $brandFormInput . '</p>'
+    . '<p>Colour: ' . $colourFormInput . '</p>'
+    . '<p>Need Replacing? ' . $needReplacingFormInput . '</p>'
+    . '<p>Image URL: ' . $imageFormInput . '</p>'
+    . '</div>';
 
 if (in_array($brandFormInput, $brandList)) {
-    echo 'Brand already in Brands table';
-$brandInputId = array_search($brandFormInput, $brandList);
-echo '<p>Brand ID: ' . $brandInputId . '</p>';
+    $brandInputId = array_search($brandFormInput, $brandList);
+} else {
+    $sqlInsertBrand = "INSERT INTO `brands`(`name`) VALUES (:name);";
 
+    $queryBrand = $pdo->prepare($sqlInsertBrand);
+    $queryBrand->bindParam(":name", $brandFormInput);
+    $queryBrand->execute();
+
+    $sqlGetId = "SELECT `id` FROM `brands` WHERE `name`= :name";
+
+    $queryColourId = $pdo->prepare($sqlGetId);
+    $queryColourId->bindParam(":name", $brandFormInput);
+    $queryColourId->execute();
+    $newBrandIdArray = $queryColourId->fetchAll(PDO::FETCH_ASSOC);
+
+    $brandInputId = $newBrandIdArray['id'];
 }
-else {
-    echo 'Brand needs to be added to Brands table';
-}
-
-
-echo '<pre>';
-print_r($colourList);
-echo '</pre>';
 
 if (in_array($colourFormInput, $colourList)) {
-    echo 'Colour already in Colours table';
     $colourInputId = array_search($colourFormInput, $colourList);
-    echo '<p>Brand ID: ' . $colourInputId . '</p>';
-}
-else {
-    echo 'Colour needs to be added to Colours table';
+} else {
     $sqlInsertColour = "INSERT INTO `colours`(`name`) VALUES (:name);";
 
     $queryColour = $pdo->prepare($sqlInsertColour);
     $queryColour->bindParam(":name", $colourFormInput);
     $queryColour->execute();
-}
 
+    $sqlGetId = "SELECT `id` FROM `colours` WHERE `name`= :name";
+
+    $queryColourId = $pdo->prepare($sqlGetId);
+    $queryColourId->bindParam(":name", $brandFormInput);
+    $queryColourId->execute();
+    $newColourIdArray = $queryColourId->fetchAll(PDO::FETCH_ASSOC);
+
+    $colourInputId = $newColourIdArray['id'];
+}
 
 if ($needReplacingFormInput == 'Yes') {
     $needReplacingInputBool = 1;
-}
-else {
+} else {
     $needReplacingInputBool = 0;
 }
 
-echo '<p>Need replacing bool: ' . $needReplacingInputBool . '</p>';
+$sqlInsertPaint = 'INSERT INTO `paints` (`brand_id`, `colour_id`, `needs_replacing`, `image`)
+VALUES (:brand_id, :colour_id, :needs_replacing, :image)';
 
+$queryNewPaint = $pdo->prepare($sqlInsertPaint);
+$queryNewPaint->bindParam(":brand_id", $brandInputId);
+$queryNewPaint->bindParam(":colour_id", $colourInputId);
+$queryNewPaint->bindParam(":needs_replacing", $needReplacingInputBool);
+$queryNewPaint->bindParam(":image", $imageFormInput);
+$queryNewPaint->execute();
 ?>
-
-
-
 
 <footer>
     Claudia Lim 2023

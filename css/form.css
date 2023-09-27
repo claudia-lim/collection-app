@@ -10,6 +10,7 @@
 h2 {
     text-decoration: underline;
     font-family: 'Bebas Neue', sans-serif;
+    color: var(--colour7);
 }
 
 label {
@@ -46,6 +47,13 @@ button {
     background-color: var(--colour7);
     color: var(--colour3);
 }
+
+.new-item {
+    margin: 1rem;
+    padding: 1rem;
+    color: var(--colour7);
+}
+
 
 
 
