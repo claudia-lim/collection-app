@@ -1,5 +1,7 @@
 <?php
 require_once 'classes/Paints.php';
+require_once 'classes/Colour.php';
+require_once 'classes/Brand.php';
 $host = 'db';
 $db = 'collection_app';
 $user = 'root';
@@ -25,4 +27,24 @@ $query = $pdo->prepare(
 $query->execute();
 
 $paints = $query->fetchAll(PDO::FETCH_CLASS, 'Paints');
+
+$query2 = $pdo->prepare(
+'SELECT `name` AS "colour_name"
+FROM `colours`
+ORDER BY `name`;'
+);
+
+$query2->execute();
+
+$colours = $query2->fetchAll(PDO::FETCH_CLASS, 'Colour');
+
+$query3 = $pdo->prepare ('SELECT `name` AS "brand_name"
+FROM `brands`
+ORDER BY `name`;'
+);
+
+$query3->execute();
+
+$brands = $query3->fetchAll(PDO::FETCH_CLASS, 'Brand');
+
 
