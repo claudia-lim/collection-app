@@ -2,32 +2,6 @@
 require_once 'fetchdb.php';
 require_once 'classes/Paints.php';
 require_once 'functions-process-new-item.php';
-
-//function alreadyInCollection (array $paints, Paints $newPaint){
-//    foreach ($paints as $paint) {
-//        if ($newPaint->getBrandName() == $paint->getBrandname()
-//            && $newPaint->getColourName() == $paint->getColourName()
-//            && $newPaint->getNeedReplacing() == $paint->getNeedReplacing()) {
-//            return true;
-//        }
-//    }
-//    return false;
-//}
-//
-//function validImageInput(string $imageFormInput) {
-//    if (!$imageFormInput){
-//        return true;
-//    }
-//    else {
-//        if (filter_var ($imageFormInput, FILTER_VALIDATE_URL)) {
-//            return true;
-//        }
-//        else {
-//            return false;
-//        }
-//    }
-//}
-
 ?>
 
 <!DOCTYPE html>
@@ -141,22 +115,20 @@ $validImageInput = validImageInput($imageFormInput);
 
 if ($alreadyInCollection) {
     echo '<h3 class="form-feedback">Already in Collection - Not added</h3>';
-}
-elseif (!$validImageInput) {
+} elseif (!$validImageInput) {
     echo '<h3 class="form-feedback">Invalid image input - try again</h3>';
-}
-else {
-        $sqlInsertPaint = 'INSERT INTO `paints` (`brand_id`, `colour_id`, `needs_replacing`, `image`)
+} else {
+    $sqlInsertPaint = 'INSERT INTO `paints` (`brand_id`, `colour_id`, `needs_replacing`, `image`)
 VALUES (:brand_id, :colour_id, :needs_replacing, :image)';
 
-        $queryNewPaint = $pdo->prepare($sqlInsertPaint);
-        $queryNewPaint->bindParam(":brand_id", $brandInputId);
-        $queryNewPaint->bindParam(":colour_id", $colourInputId);
-        $queryNewPaint->bindParam(":needs_replacing", $needReplacingInputBool);
-        $queryNewPaint->bindParam(":image", $imageFormInput);
-        $queryNewPaint->execute();
-        echo "<h3 class='form-feedback'>New paint added to collection.</h3>";
-    }
+    $queryNewPaint = $pdo->prepare($sqlInsertPaint);
+    $queryNewPaint->bindParam(":brand_id", $brandInputId);
+    $queryNewPaint->bindParam(":colour_id", $colourInputId);
+    $queryNewPaint->bindParam(":needs_replacing", $needReplacingInputBool);
+    $queryNewPaint->bindParam(":image", $imageFormInput);
+    $queryNewPaint->execute();
+    echo "<h3 class='form-feedback'>New paint added to collection.</h3>";
+}
 
 echo '</div>';
 ?>

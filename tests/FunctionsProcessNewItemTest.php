@@ -5,8 +5,10 @@ require_once '../classes/Paints.php';
 
 use PHPUnit\Framework\TestCase;
 
-class FunctionsProcessNewItemTest extends TestCase {
-    public function testAlreadyInCollectionReturnTrueIfInCollection() {
+class FunctionsProcessNewItemTest extends TestCase
+{
+    public function testAlreadyInCollectionReturnTrueIfInCollection()
+    {
         $testPaintInCollection1 = new Paints;
         $testPaintInCollection1->setBrandName('Same Brand');
         $testPaintInCollection1->setColourName('Same Colour');
@@ -27,13 +29,15 @@ class FunctionsProcessNewItemTest extends TestCase {
         $this->assertTrue($actual);
     }
 
-    public function testValidImageInputReturnFalseForInvalidStringInput() {
+    public function testValidImageInputReturnFalseForInvalidStringInput()
+    {
         $actual = validImageInput("Non URL String");
 
         $this->assertFalse($actual);
     }
 
-    public function testValidImageInputReturnFalseForInvalidInputInteger() {
+    public function testValidImageInputReturnFalseForInvalidInputInteger()
+    {
         $actual = validImageInput(1234);
 
         $this->assertFalse($actual);
