@@ -29,7 +29,7 @@ $query->execute();
 $paints = $query->fetchAll(PDO::FETCH_CLASS, 'Paints');
 
 $query2 = $pdo->prepare(
-'SELECT `name` AS "colour_name"
+'SELECT `name` AS "colour_name", `id` AS "colour_id"
 FROM `colours`
 ORDER BY `name`;'
 );
@@ -38,13 +38,21 @@ $query2->execute();
 
 $colours = $query2->fetchAll(PDO::FETCH_CLASS, 'Colour');
 
-$query3 = $pdo->prepare ('SELECT `name` AS "brand_name"
+foreach ($colours as $colour) {
+    $colourList[$colour->getColourId()] = $colour->getColour();
+}
+
+$query3 = $pdo->prepare ('SELECT `name` AS "brand_name", `id` AS "brand_id"
 FROM `brands`
 ORDER BY `name`;'
 );
+
 
 $query3->execute();
 
 $brands = $query3->fetchAll(PDO::FETCH_CLASS, 'Brand');
 
+foreach ($brands as $brand) {
+    $brandList[$brand->getBrandId()] = $brand->getBrand();
+}
 
