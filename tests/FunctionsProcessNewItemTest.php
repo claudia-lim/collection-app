@@ -42,7 +42,4 @@ class FunctionsProcessNewItemTest extends TestCase
 
         $this->assertFalse($actual);
     }
-
 }
-
-
