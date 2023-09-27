@@ -86,10 +86,11 @@ if (in_array($colourFormInput, $colourList)) {
 }
 else {
     echo 'Colour needs to be added to Colours table';
-    $queryColour = $pdo->prepare('INSERT INTO `colours`(`name`) VALUES ("Primary Yellow");');
+    $sqlInsertColour = 'INSERT INTO `colours`(`name`) VALUES (:name);';
+    $sqlInsertColour->bindParam(":name", $colourFormInput);
+    $queryColour = $pdo->prepare($sqlInsertColour);
+
     $queryColour->execute();
-    $colourInputId = array_search($colourFormInput, $colourList);
-    echo '<p>Brand ID: ' . $colourInputId . '</p>';
 }
 
 
