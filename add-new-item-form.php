@@ -9,7 +9,7 @@ require_once 'classes/Paints.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Paint Collection App</title>
+    <title>Add New Paint</title>
 
     <meta name="description" content="Paint Collection App">
     <meta name="author" content="Claudia Lim">
@@ -40,10 +40,9 @@ require_once 'classes/Paints.php';
 </header>
 
 <nav>
-    <a href="index.php"><i class="fa-solid fa-plus"></i> Home</a>
+    <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
 </nav>
-<div class="grid">
-
+<div class="form-layout">
     <h2>Add New Paint</h2>
 
     <form method="post" action="process-new-item.php">
@@ -84,8 +83,10 @@ require_once 'classes/Paints.php';
             <label for="image-url">Image URL:</label>
             <input type="text" id="image-url" name="image-url">
         </div>
+        <div class="button">
+            <button type="submit"><i class="fa-solid fa-plus"></i> Add</button>
+        </div>
 
-        <button type="submit">Add</button>
     </form>
 
 </div>
