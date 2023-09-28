@@ -22,7 +22,8 @@ require_once 'classes/Paints.php';
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Cutive+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Cutive+Mono&display=swap"
+          rel="stylesheet">
 
     <link rel="icon" href="images/paint-svgrepo-com.svg" sizes="192x192">
     <link rel="shortcut icon" href="images/paint-svgrepo-com.svg">
