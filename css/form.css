@@ -6,12 +6,6 @@
     color: var(--colour7);
 }
 
-h2 {
-    text-decoration: underline;
-    font-family: 'Bebas Neue', sans-serif;
-    color: var(--colour7);
-}
-
 label {
     width: 10rem;
     text-align: center;
@@ -51,11 +45,4 @@ button {
     margin: 1rem;
     padding: 1rem;
     color: var(--colour7);
-}
-
-h3 {
-    background-color: var(--colour5);
-    width: fit-content;
-    padding: 1rem;
-    border-radius: 1rem;
 }

@@ -9,7 +9,7 @@ require_once 'classes/Paints.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Paint Collection App</title>
+    <title>Paint Archive</title>
 
     <meta name="description" content="Paint Collection App">
     <meta name="author" content="Claudia Lim">
@@ -40,9 +40,11 @@ require_once 'classes/Paints.php';
 <nav>
     <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
     <a href="add-new-item-form.php"><i class="fa-solid fa-plus"></i> Add New Paint</a>
-    <a href="archive.php"><i class="fa-solid fa-plus"></i> Archive</a>
+    <a href="archive.php"><i class="fa-solid fa-eraser"></i> Archive</a>
 </nav>
+
 <div class="grid">
+    <h2>Archive</h2>
     <!--Container for each paint card - repeated for each item-->
     <?php
     foreach ($paintsArchive as $paint) {
