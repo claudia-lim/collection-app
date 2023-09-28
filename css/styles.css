@@ -121,7 +121,6 @@ h3 {
     color: var(--colour7);
 }
 
-
 @media only screen and (max-width: 900px) {
     section {
         grid-column: 1/3;
