@@ -21,6 +21,7 @@ $query = $pdo->prepare(
     ON `paints`.`colour_id` = `colours`.`id`
     INNER JOIN `brands`
     ON `paints`.`brand_id` = `brands`.`id`
+    WHERE `deleted` = 0
     ORDER BY `paints`.`id`;'
 );
 

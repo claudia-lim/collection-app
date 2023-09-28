@@ -41,40 +41,55 @@ require_once 'classes/Paints.php';
         <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
         <a href="add-new-item-form.php"><i class="fa-solid fa-plus"></i> Add New Paint</a>
     </nav>
+
     <div class="grid">
-    <!--Container for each paint card - repeated for each item-->
+        <h2>Deleted Paint</h2>
     <?php
-    foreach ($paints as $paint) {
+    $paintSelectedId = $_POST['delete'];
+    $sqlFetchSelectedPaint = 'SELECT `paints`.`id`, `brands`.`name` AS "brand_name", 
+    `colours`.`name` AS "colour_name", 
+    `paints`.`needs_replacing` AS "need_replacing", 
+    `paints`.`image`
+    FROM `paints`
+    INNER JOIN `colours`
+    ON `paints`.`colour_id` = `colours`.`id`
+    INNER JOIN `brands`
+    ON `paints`.`brand_id` = `brands`.`id`
+	WHERE `deleted` = 0 AND`paints`.`id`= :id
+    ORDER BY `paints`.`id`;';
+
+    $querySelectedPaint = $pdo->prepare($sqlFetchSelectedPaint);
+    $querySelectedPaint->bindParam(":id", $paintSelectedId);
+    $querySelectedPaint->execute();
+    $selectedPaint = $querySelectedPaint->fetchAll(PDO::FETCH_CLASS, 'Paints');
+
+
         echo '<section class="paint-container">
                  <div class="image-container">';
-        if ($paint->getImage() == "No Image") {
+        if ($selectedPaint[0]->getImage() == "No Image") {
             echo '<p>No Image Available</p>';
         } else {
-            echo '<img alt="Image of paint" src=' . $paint->getImage() . '>';
+            echo '<img alt="Image of paint" src=' . $selectedPaint[0]->getImage() . '>';
         }
         echo '</div>
                     <div class="paint-info">
             <table>
                 <tr>
                     <td class="attribute">Brand:</td>
-                    <td class="info">' . $paint->getBrandName() . '</td>
+                    <td class="info">' . $selectedPaint[0]->getBrandName() . '</td>
                 </tr>
                 <tr>
                     <td class="attribute">Colour:</td>
-                    <td class="info">' . $paint->getColourName() . '</td>
+                    <td class="info">' . $selectedPaint[0]->getColourName() . '</td>
                 </tr>
                 <tr>
                     <td class="attribute">Needs replacing?</td>
-                    <td class="info">' . $paint->getNeedReplacing() . '</td>
+                    <td class="info">' . $selectedPaint[0]->getNeedReplacing() . '</td>
                 </tr>
             </table>
-            <form method="post" action="delete-item.php">
-            <button type="submit" name="delete" value=' . $paint->getId() . '>Delete</button>
-</form>
-            
+
         </div>
     </section>';
-    }
     ?>
 </div>
     <footer>
