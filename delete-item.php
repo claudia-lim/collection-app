@@ -87,9 +87,16 @@ require_once 'classes/Paints.php';
                     <td class="info">' . $selectedPaint[0]->getNeedReplacing() . '</td>
                 </tr>
             </table>
-
         </div>
     </section>';
+        $sqlDeleteSelectedPaint = 'UPDATE `paints`
+SET `deleted` = 1
+WHERE `id` = :id;';
+
+        $queryDeleteSelectedPaint = $pdo->prepare($sqlDeleteSelectedPaint);
+        $queryDeleteSelectedPaint->bindParam(':id', $paintSelectedId);
+        $queryDeleteSelectedPaint->execute();
+        echo '<h3>Paint has been deleted.</h3>';
     ?>
 </div>
     <footer>
