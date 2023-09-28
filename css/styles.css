@@ -118,7 +118,7 @@ table {
     padding: 0.25rem;
 }
 
-form.delete, form.restore {
+form.delete, form.restore, form.perm-delete {
     grid-column: 2;
     margin: 0.5rem;
     justify-self: right;

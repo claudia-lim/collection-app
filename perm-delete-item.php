@@ -40,42 +40,66 @@ require_once 'classes/Paints.php';
 <nav>
     <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
     <a href="add-new-item-form.php"><i class="fa-solid fa-plus"></i> Add New Paint</a>
-    <a href="archive.php"><i class="fa-solid fa-plus"></i> Archive</a>
+    <a href="archive.php"><i class="fa-solid fa-eraser"></i> Archive</a>
 </nav>
+
 <div class="grid">
-    <!--Container for each paint card - repeated for each item-->
+
     <?php
-    foreach ($paintsArchive as $paint) {
-        echo '<section class="paint-container">
+    $paintSelectedId = $_POST['perm-delete'];
+    $sqlFetchSelectedPaint = 'SELECT `paints`.`id`, `brands`.`name` AS "brand_name", 
+    `colours`.`name` AS "colour_name", 
+    `paints`.`needs_replacing` AS "need_replacing", 
+    `paints`.`image`
+    FROM `paints`
+    INNER JOIN `colours`
+    ON `paints`.`colour_id` = `colours`.`id`
+    INNER JOIN `brands`
+    ON `paints`.`brand_id` = `brands`.`id`
+	WHERE `deleted` = 1 AND`paints`.`id`= :id
+    ORDER BY `paints`.`id`;';
+
+    $querySelectedPaint = $pdo->prepare($sqlFetchSelectedPaint);
+    $querySelectedPaint->bindParam(":id", $paintSelectedId);
+    $querySelectedPaint->execute();
+    $selectedPaint = $querySelectedPaint->fetchAll(PDO::FETCH_CLASS, 'Paints');
+
+
+    echo '<section class="paint-container">
                  <div class="image-container">';
-        if ($paint->getImage() == "No Image") {
-            echo '<p>No Image Available</p>';
-        } else {
-            echo '<img alt="Image of paint" src=' . $paint->getImage() . '>';
-        }
-        echo '</div>
+    if ($selectedPaint[0]->getImage() == "No Image") {
+        echo '<p>No Image Available</p>';
+    } else {
+        echo '<img alt="Image of paint" src=' . $selectedPaint[0]->getImage() . '>';
+    }
+    echo '</div>
                     <div class="paint-info">
             <table>
                 <tr>
                     <td class="attribute">Brand:</td>
-                    <td class="info">' . $paint->getBrandName() . '</td>
+                    <td class="info">' . $selectedPaint[0]->getBrandName() . '</td>
                 </tr>
                 <tr>
                     <td class="attribute">Colour:</td>
-                    <td class="info">' . $paint->getColourName() . '</td>
+                    <td class="info">' . $selectedPaint[0]->getColourName() . '</td>
+                </tr>
+                <tr>
+                    <td class="attribute">Needs replacing?</td>
+                    <td class="info">' . $selectedPaint[0]->getNeedReplacing() . '</td>
                 </tr>
             </table>
         </div>
-        <form class="restore" method="post" action="restore-item.php">
-            <button type="submit" name="restore" value=' . $paint->getId() . '><i class="fa-solid fa-palette"></i> Restore</button>
-</form>
-<form class="perm-delete" method="post" action="perm-delete-item.php">
-            <button type="submit" name="perm-delete" value=' . $paint->getId() . '><i class="fa-solid fa-trash-can"></i> Delete</button>
-</form>
     </section>';
-    }
+    $sqlPermDeleteSelectedPaint = 'DELETE FROM `paints`
+WHERE `id` = :id;';
+
+    $queryPermDeleteSelectedPaint = $pdo->prepare($sqlPermDeleteSelectedPaint);
+    $queryPermDeleteSelectedPaint->bindParam(':id', $paintSelectedId);
+    $queryPermDeleteSelectedPaint->execute();
+
     ?>
 </div>
+<h3>Paint has been permanently deleted.</h3>
 <footer>
     Claudia Lim 2023
 </footer>

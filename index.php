@@ -71,7 +71,7 @@ require_once 'classes/Paints.php';
             </table>
         </div>
         <form class="delete" method="post" action="delete-item.php">
-            <button type="submit" name="delete" value=' . $paint->getId() . '><i class="fa-solid fa-minus"></i> Delete</button>
+            <button type="submit" name="delete" value=' . $paint->getId() . '><i class="fa-solid fa-minus"></i> Remove</button>
 </form>
     </section>';
     }

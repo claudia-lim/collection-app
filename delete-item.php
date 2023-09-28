@@ -100,7 +100,7 @@ WHERE `id` = :id;';
 
     ?>
 </div>
-    <h3>Paint has been deleted.</h3>
+    <h3>Paint has been removed from collection - it can be found in Archive</h3>
     <footer>
         Claudia Lim 2023
     </footer>
