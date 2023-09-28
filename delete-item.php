@@ -94,7 +94,6 @@ require_once 'classes/Paints.php';
     $sqlRestoreSelectedPaint = 'UPDATE `paints`
 SET `deleted` = 1
 WHERE `id` = :id;';
-
     $queryDeleteSelectedPaint = $pdo->prepare($sqlRestoreSelectedPaint);
     $queryDeleteSelectedPaint->bindParam(':id', $paintSelectedId);
     $queryDeleteSelectedPaint->execute();
