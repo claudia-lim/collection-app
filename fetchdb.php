@@ -11,7 +11,7 @@ $dsn = "mysql:host=$host;dbname=$db;";
 
 $pdo = new PDO($dsn, $user, $password);
 
-$query1 = $pdo->prepare(
+$queryFetchActiveCollection = $pdo->prepare(
     'SELECT `paints`.`id`, `brands`.`name` AS "brand_name", 
     `colours`.`name` AS "colour_name", 
     `paints`.`needs_replacing` AS "need_replacing", 
@@ -24,31 +24,31 @@ $query1 = $pdo->prepare(
     WHERE `deleted` = 0
     ORDER BY `paints`.`id`;'
 );
-$query1->execute();
-$paints = $query1->fetchAll(PDO::FETCH_CLASS, 'Paints');
+$queryFetchActiveCollection->execute();
+$paints = $queryFetchActiveCollection->fetchAll(PDO::FETCH_CLASS, 'Paints');
 
-$query2 = $pdo->prepare(
+$queryFetchColours = $pdo->prepare(
 'SELECT `name` AS "colour_name", `id` AS "colour_id"
 FROM `colours`
 ORDER BY `name`;'
 );
-$query2->execute();
-$colours = $query2->fetchAll(PDO::FETCH_CLASS, 'Colour');
+$queryFetchColours->execute();
+$colours = $queryFetchColours->fetchAll(PDO::FETCH_CLASS, 'Colour');
 foreach ($colours as $colour) {
     $colourList[$colour->getColourId()] = $colour->getColour();
 }
 
-$query3 = $pdo->prepare ('SELECT `name` AS "brand_name", `id` AS "brand_id"
+$queryFetchBrands = $pdo->prepare ('SELECT `name` AS "brand_name", `id` AS "brand_id"
 FROM `brands`
 ORDER BY `name`;'
 );
-$query3->execute();
-$brands = $query3->fetchAll(PDO::FETCH_CLASS, 'Brand');
+$queryFetchBrands->execute();
+$brands = $queryFetchBrands->fetchAll(PDO::FETCH_CLASS, 'Brand');
 foreach ($brands as $brand) {
     $brandList[$brand->getBrandId()] = $brand->getBrand();
 }
 
-$query4 = $pdo->prepare( 'SELECT `paints`.`id`, `brands`.`name` AS "brand_name", 
+$queryFetchArchivedPaints = $pdo->prepare( 'SELECT `paints`.`id`, `brands`.`name` AS "brand_name", 
     `colours`.`name` AS "colour_name", 
     `paints`.`needs_replacing` AS "need_replacing", 
     `paints`.`image`
@@ -59,5 +59,5 @@ $query4 = $pdo->prepare( 'SELECT `paints`.`id`, `brands`.`name` AS "brand_name",
     ON `paints`.`brand_id` = `brands`.`id`
     WHERE `deleted` = 1
     ORDER BY `paints`.`id`;');
-$query4->execute();
-$paintsArchive = $query4->fetchAll(PDO::FETCH_CLASS, 'Paints');
+$queryFetchArchivedPaints->execute();
+$paintsArchive = $queryFetchArchivedPaints->fetchAll(PDO::FETCH_CLASS, 'Paints');
