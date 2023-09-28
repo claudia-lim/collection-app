@@ -38,7 +38,8 @@ require_once 'classes/Paints.php';
     </header>
 
     <nav>
-        <a href=""><i class="fa-solid fa-plus"></i>Add New Paint</a>
+        <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
+        <a href="add-new-item-form.php"><i class="fa-solid fa-plus"></i> Add New Paint</a>
     </nav>
     <div class="grid">
     <!--Container for each paint card - repeated for each item-->

@@ -66,5 +66,4 @@ class Paints
     {
         $this->image = $image;
     }
-
 }
