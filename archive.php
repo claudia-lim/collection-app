@@ -71,9 +71,7 @@ require_once 'classes/Paints.php';
         <form class="restore" method="post" action="restore-item.php">
             <button type="submit" name="restore" value=' . $paint->getId() . '><i class="fa-solid fa-palette"></i> Restore</button>
 </form>
-<form class="perm-delete" method="post" action="perm-delete-item.php">
-            <button type="submit" name="perm-delete" value=' . $paint->getId() . '><i class="fa-solid fa-trash-can"></i> Delete</button>
-</form>
+
     </section>';
     }
     ?>
