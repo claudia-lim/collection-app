@@ -68,11 +68,10 @@ require_once 'classes/Paints.php';
                     <td class="info">' . $paint->getNeedReplacing() . '</td>
                 </tr>
             </table>
-            <form method="post" action="delete-item.php">
-            <button type="submit" name="delete" value=' . $paint->getId() . '>Delete</button>
-</form>
-            
         </div>
+        <form class="delete" method="post" action="delete-item.php">
+            <button type="submit" name="delete" value=' . $paint->getId() . '><i class="fa-solid fa-minus"></i> Delete</button>
+</form>
     </section>';
     }
     ?>
