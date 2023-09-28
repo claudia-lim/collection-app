@@ -47,7 +47,6 @@ FROM `brands`
 ORDER BY `name`;'
 );
 
-
 $query3->execute();
 
 $brands = $query3->fetchAll(PDO::FETCH_CLASS, 'Brand');

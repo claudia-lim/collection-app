@@ -51,7 +51,6 @@ $colourFormInput = $_POST['colour-input'];
 $needReplacingFormInput = $_POST['need-replacing'];
 $imageFormInput = $_POST['image-url'];
 
-
 echo '<div class = "new-item">'
     . '<h2>New Item</h2>'
     . '<p>Brand: ' . $brandFormInput . '</p>'
@@ -108,7 +107,6 @@ $newPaint->setBrandName($brandFormInput);
 $newPaint->setColourName($colourFormInput);
 $newPaint->setNeedReplacing($needReplacingInputBool);
 $newPaint->setImage($imageFormInput);
-
 
 $alreadyInCollection = alreadyInCollection($paints, $newPaint);
 $validImageInput = validImageInput($imageFormInput);

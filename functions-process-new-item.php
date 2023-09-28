@@ -16,10 +16,9 @@ function validImageInput(string $imageFormInput)
     if (!$imageFormInput) {
         return true;
     } else {
-        if (filter_var($imageFormInput, FILTER_VALIDATE_URL)) {
-            return true;
-        } else {
+        if (!filter_var($imageFormInput, FILTER_VALIDATE_URL)) {
             return false;
         }
+        return true;
     }
 }
