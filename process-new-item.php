@@ -43,6 +43,7 @@ require_once 'functions-process-new-item.php';
 <nav>
     <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
     <a href="add-new-item-form.php"><i class="fa-solid fa-plus"></i> Add New Paint</a>
+    <a href="archive.php"><i class="fa-solid fa-eraser"></i> Archive</a>
 </nav>
 
 <?php

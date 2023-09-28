@@ -33,19 +33,19 @@ require_once 'classes/Paints.php';
 
 <body>
 
-    <header>
-        <h1>Paint Collection App</h1>
-    </header>
+<header>
+    <h1>Paint Collection App</h1>
+</header>
 
-    <nav>
-        <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
-        <a href="add-new-item-form.php"><i class="fa-solid fa-plus"></i> Add New Paint</a>
-        <a href="archive.php"><i class="fa-solid fa-eraser"></i> Archive</a>
-    </nav>
-    <div class="grid">
+<nav>
+    <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
+    <a href="add-new-item-form.php"><i class="fa-solid fa-plus"></i> Add New Paint</a>
+    <a href="archive.php"><i class="fa-solid fa-plus"></i> Archive</a>
+</nav>
+<div class="grid">
     <!--Container for each paint card - repeated for each item-->
     <?php
-    foreach ($paints as $paint) {
+    foreach ($paintsArchive as $paint) {
         echo '<section class="paint-container">
                  <div class="image-container">';
         if ($paint->getImage() == "No Image") {
@@ -64,22 +64,18 @@ require_once 'classes/Paints.php';
                     <td class="attribute">Colour:</td>
                     <td class="info">' . $paint->getColourName() . '</td>
                 </tr>
-                <tr>
-                    <td class="attribute">Needs replacing?</td>
-                    <td class="info">' . $paint->getNeedReplacing() . '</td>
-                </tr>
             </table>
         </div>
-        <form class="delete" method="post" action="delete-item.php">
-            <button type="submit" name="delete" value=' . $paint->getId() . '><i class="fa-solid fa-minus"></i> Delete</button>
+        <form class="restore" method="post" action="restore-item.php">
+            <button type="submit" name="restore" value=' . $paint->getId() . '><i class="fa-solid fa-palette"></i> Restore</button>
 </form>
     </section>';
     }
     ?>
 </div>
-    <footer>
-        Claudia Lim 2023
-    </footer>
+<footer>
+    Claudia Lim 2023
+</footer>
 
 </body>
 </html>

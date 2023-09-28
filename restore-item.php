@@ -33,20 +33,20 @@ require_once 'classes/Paints.php';
 
 <body>
 
-    <header>
-        <h1>Paint Collection App</h1>
-    </header>
+<header>
+    <h1>Paint Collection App</h1>
+</header>
 
-    <nav>
-        <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
-        <a href="add-new-item-form.php"><i class="fa-solid fa-plus"></i> Add New Paint</a>
-        <a href="archive.php"><i class="fa-solid fa-eraser"></i> Archive</a>
-    </nav>
+<nav>
+    <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
+    <a href="add-new-item-form.php"><i class="fa-solid fa-plus"></i> Add New Paint</a>
+    <a href="archive.php"><i class="fa-solid fa-eraser"></i> Archive</a>
+</nav>
 
-    <div class="grid">
+<div class="grid">
 
     <?php
-    $paintSelectedId = $_POST['delete'];
+    $paintSelectedId = $_POST['restore'];
     $sqlFetchSelectedPaint = 'SELECT `paints`.`id`, `brands`.`name` AS "brand_name", 
     `colours`.`name` AS "colour_name", 
     `paints`.`needs_replacing` AS "need_replacing", 
@@ -56,7 +56,7 @@ require_once 'classes/Paints.php';
     ON `paints`.`colour_id` = `colours`.`id`
     INNER JOIN `brands`
     ON `paints`.`brand_id` = `brands`.`id`
-	WHERE `deleted` = 0 AND`paints`.`id`= :id
+	WHERE `deleted` = 1 AND`paints`.`id`= :id
     ORDER BY `paints`.`id`;';
 
     $querySelectedPaint = $pdo->prepare($sqlFetchSelectedPaint);
@@ -65,14 +65,14 @@ require_once 'classes/Paints.php';
     $selectedPaint = $querySelectedPaint->fetchAll(PDO::FETCH_CLASS, 'Paints');
 
 
-        echo '<section class="paint-container">
+    echo '<section class="paint-container">
                  <div class="image-container">';
-        if ($selectedPaint[0]->getImage() == "No Image") {
-            echo '<p>No Image Available</p>';
-        } else {
-            echo '<img alt="Image of paint" src=' . $selectedPaint[0]->getImage() . '>';
-        }
-        echo '</div>
+    if ($selectedPaint[0]->getImage() == "No Image") {
+        echo '<p>No Image Available</p>';
+    } else {
+        echo '<img alt="Image of paint" src=' . $selectedPaint[0]->getImage() . '>';
+    }
+    echo '</div>
                     <div class="paint-info">
             <table>
                 <tr>
@@ -90,20 +90,20 @@ require_once 'classes/Paints.php';
             </table>
         </div>
     </section>';
-        $sqlRestoreSelectedPaint = 'UPDATE `paints`
-SET `deleted` = 1
+    $sqlRestoreSelectedPaint = 'UPDATE `paints`
+SET `deleted` = 0
 WHERE `id` = :id;';
 
-        $queryDeleteSelectedPaint = $pdo->prepare($sqlRestoreSelectedPaint);
-        $queryDeleteSelectedPaint->bindParam(':id', $paintSelectedId);
-        $queryDeleteSelectedPaint->execute();
+    $queryRestoreSelectedPaint = $pdo->prepare($sqlRestoreSelectedPaint);
+    $queryRestoreSelectedPaint->bindParam(':id', $paintSelectedId);
+    $queryRestoreSelectedPaint->execute();
 
     ?>
 </div>
-    <h3>Paint has been deleted.</h3>
-    <footer>
-        Claudia Lim 2023
-    </footer>
+<h3>Paint has been restored.</h3>
+<footer>
+    Claudia Lim 2023
+</footer>
 
 </body>
 </html>
