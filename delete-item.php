@@ -43,7 +43,7 @@ require_once 'classes/Paints.php';
     </nav>
 
     <div class="grid">
-        <h2>Deleted Paint</h2>
+
     <?php
     $paintSelectedId = $_POST['delete'];
     $sqlFetchSelectedPaint = 'SELECT `paints`.`id`, `brands`.`name` AS "brand_name", 
@@ -96,9 +96,10 @@ WHERE `id` = :id;';
         $queryDeleteSelectedPaint = $pdo->prepare($sqlDeleteSelectedPaint);
         $queryDeleteSelectedPaint->bindParam(':id', $paintSelectedId);
         $queryDeleteSelectedPaint->execute();
-        echo '<h3>Paint has been deleted.</h3>';
+
     ?>
 </div>
+    <h3>Paint has been deleted.</h3>
     <footer>
         Claudia Lim 2023
     </footer>
