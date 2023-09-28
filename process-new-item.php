@@ -81,7 +81,7 @@ if (in_array($colourFormInput, $colourList)) {
     $colourInputId = $pdo->lastInsertId();
 }
 
-if ($needReplacingFormInput == 'Yes') {
+if ($needReplacingFormInput === 'Yes') {
     $needReplacingInputBool = 1;
 } else {
     $needReplacingInputBool = 0;

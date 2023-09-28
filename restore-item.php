@@ -56,7 +56,7 @@ require_once 'classes/Paints.php';
     ON `paints`.`colour_id` = `colours`.`id`
     INNER JOIN `brands`
     ON `paints`.`brand_id` = `brands`.`id`
-	WHERE `deleted` = 1 AND`paints`.`id`= :id
+	WHERE `deleted` = 1 AND `paints`.`id`= :id
     ORDER BY `paints`.`id`;';
 
     $querySelectedPaint = $pdo->prepare($sqlFetchSelectedPaint);
@@ -67,7 +67,7 @@ require_once 'classes/Paints.php';
 
     echo '<section class="paint-container">
                  <div class="image-container">';
-    if ($selectedPaint[0]->getImage() == "No Image") {
+    if ($selectedPaint[0]->getImage() === "No Image") {
         echo '<p>No Image Available</p>';
     } else {
         echo '<img alt="Image of paint" src=' . $selectedPaint[0]->getImage() . '>';

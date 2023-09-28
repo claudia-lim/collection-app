@@ -51,7 +51,7 @@ require_once 'classes/Paints.php';
     foreach ($paintsArchive as $paint) {
         echo '<section class="paint-container">
                  <div class="image-container">';
-        if ($paint->getImage() == "No Image") {
+        if ($paint->getImage() === "No Image") {
             echo '<p>No Image Available</p>';
         } else {
             echo '<img alt="Image of paint" src=' . $paint->getImage() . '>';

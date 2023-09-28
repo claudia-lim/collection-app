@@ -2,9 +2,9 @@
 function alreadyInCollection(array $paints, Paints $newPaint)
 {
     foreach ($paints as $paint) {
-        if ($newPaint->getBrandName() == $paint->getBrandname()
-            && $newPaint->getColourName() == $paint->getColourName()
-            && $newPaint->getNeedReplacing() == $paint->getNeedReplacing()) {
+        if ($newPaint->getBrandName() === $paint->getBrandname()
+            && $newPaint->getColourName() === $paint->getColourName()
+            && $newPaint->getNeedReplacing() === $paint->getNeedReplacing()) {
             return true;
         }
     }
