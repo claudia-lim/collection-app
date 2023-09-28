@@ -40,6 +40,7 @@ require_once 'classes/Paints.php';
     <nav>
         <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
         <a href="add-new-item-form.php"><i class="fa-solid fa-plus"></i> Add New Paint</a>
+        <a href="archive.php"><i class="fa-solid fa-eraser"></i> Archive</a>
     </nav>
     <div class="grid">
     <!--Container for each paint card - repeated for each item-->
@@ -69,6 +70,9 @@ require_once 'classes/Paints.php';
                 </tr>
             </table>
         </div>
+        <form class="delete" method="post" action="delete-item.php">
+            <button type="submit" name="delete" value=' . $paint->getId() . '><i class="fa-solid fa-minus"></i> Remove</button>
+</form>
     </section>';
     }
     ?>
