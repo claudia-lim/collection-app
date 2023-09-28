@@ -44,7 +44,7 @@ CREATE TABLE `paints` (
 `colour_id` int(11) unsigned, 
 `needs_replacing` tinyint unsigned DEFAULT 0,
 `image` varchar(255),
-`deleted` tinyint unsigned DEFAULT 0
+`deleted` tinyint unsigned DEFAULT 0,
 PRIMARY KEY (`id`),
 CONSTRAINT `fk_paints_brands` FOREIGN KEY (`brand_id`) REFERENCES `brands`(`id`), 
 CONSTRAINT `fk_paints_colours` FOREIGN KEY (`colour_id`) REFERENCES `colours`(`id`)
