@@ -98,7 +98,6 @@ WHERE `id` = :id;';
     $queryDeleteSelectedPaint = $pdo->prepare($sqlRestoreSelectedPaint);
     $queryDeleteSelectedPaint->bindParam(':id', $paintSelectedId);
     $queryDeleteSelectedPaint->execute();
-
     ?>
 </div>
 <div class="removed">
