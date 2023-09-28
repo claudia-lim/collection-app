@@ -22,7 +22,8 @@ require_once 'classes/Paints.php';
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Cutive+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Cutive+Mono&display=swap"
+          rel="stylesheet">
 
     <link rel="icon" href="images/paint-svgrepo-com.svg" sizes="192x192">
     <link rel="shortcut icon" href="images/paint-svgrepo-com.svg">
@@ -33,17 +34,17 @@ require_once 'classes/Paints.php';
 
 <body>
 
-    <header>
-        <h1>Paint Collection App</h1>
-    </header>
+<header>
+    <h1>Paint Collection App</h1>
+</header>
 
-    <nav>
-        <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
-        <a href="add-new-item-form.php"><i class="fa-solid fa-plus"></i> Add New Paint</a>
-        <a href="archive.php"><i class="fa-solid fa-eraser"></i> Archive</a>
-    </nav>
+<nav>
+    <a href="index.php"><i class="fa-solid fa-paintbrush"></i> Home</a>
+    <a href="add-new-item-form.php"><i class="fa-solid fa-plus"></i> Add New Paint</a>
+    <a href="archive.php"><i class="fa-solid fa-eraser"></i> Archive</a>
+</nav>
 
-    <div class="grid">
+<div class="grid">
 
     <?php
     $paintSelectedId = $_POST['delete'];
@@ -65,14 +66,14 @@ require_once 'classes/Paints.php';
     $selectedPaint = $querySelectedPaint->fetchAll(PDO::FETCH_CLASS, 'Paints');
 
 
-        echo '<section class="paint-container">
+    echo '<section class="paint-container">
                  <div class="image-container">';
-        if ($selectedPaint[0]->getImage() == "No Image") {
-            echo '<p>No Image Available</p>';
-        } else {
-            echo '<img alt="Image of paint" src=' . $selectedPaint[0]->getImage() . '>';
-        }
-        echo '</div>
+    if ($selectedPaint[0]->getImage() == "No Image") {
+        echo '<p>No Image Available</p>';
+    } else {
+        echo '<img alt="Image of paint" src=' . $selectedPaint[0]->getImage() . '>';
+    }
+    echo '</div>
                     <div class="paint-info">
             <table>
                 <tr>
@@ -90,20 +91,23 @@ require_once 'classes/Paints.php';
             </table>
         </div>
     </section>';
-        $sqlRestoreSelectedPaint = 'UPDATE `paints`
+    $sqlRestoreSelectedPaint = 'UPDATE `paints`
 SET `deleted` = 1
 WHERE `id` = :id;';
 
-        $queryDeleteSelectedPaint = $pdo->prepare($sqlRestoreSelectedPaint);
-        $queryDeleteSelectedPaint->bindParam(':id', $paintSelectedId);
-        $queryDeleteSelectedPaint->execute();
+    $queryDeleteSelectedPaint = $pdo->prepare($sqlRestoreSelectedPaint);
+    $queryDeleteSelectedPaint->bindParam(':id', $paintSelectedId);
+    $queryDeleteSelectedPaint->execute();
 
     ?>
 </div>
+<div class="removed">
     <h3>Paint has been removed from collection - it can be found in Archive</h3>
-    <footer>
-        Claudia Lim 2023
-    </footer>
+</div>
+
+<footer>
+    Claudia Lim 2023
+</footer>
 
 </body>
 </html>

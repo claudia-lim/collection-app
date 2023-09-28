@@ -140,6 +140,7 @@ h2 {
 
 h3 {
     color: var(--colour7);
+    margin: 0.5rem;
 }
 
 @media only screen and (max-width: 900px) {
