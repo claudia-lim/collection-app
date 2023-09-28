@@ -66,15 +66,7 @@ if (in_array($brandFormInput, $brandList)) {
     $queryBrand = $pdo->prepare($sqlInsertBrand);
     $queryBrand->bindParam(":name", $brandFormInput);
     $queryBrand->execute();
-
-    $sqlGetId = "SELECT `id` FROM `brands` WHERE `name`= :name";
-
-    $queryColourId = $pdo->prepare($sqlGetId);
-    $queryColourId->bindParam(":name", $brandFormInput);
-    $queryColourId->execute();
-    $newBrandIdArray = $queryColourId->fetchAll(PDO::FETCH_ASSOC);
-
-    $brandInputId = $newBrandIdArray['id'];
+    $brandInputId = $pdo->lastInsertId();
 }
 
 if (in_array($colourFormInput, $colourList)) {
@@ -85,15 +77,7 @@ if (in_array($colourFormInput, $colourList)) {
     $queryColour = $pdo->prepare($sqlInsertColour);
     $queryColour->bindParam(":name", $colourFormInput);
     $queryColour->execute();
-
-    $sqlGetId = "SELECT `id` FROM `colours` WHERE `name`= :name";
-
-    $queryColourId = $pdo->prepare($sqlGetId);
-    $queryColourId->bindParam(":name", $brandFormInput);
-    $queryColourId->execute();
-    $newColourIdArray = $queryColourId->fetchAll(PDO::FETCH_ASSOC);
-
-    $colourInputId = $newColourIdArray['id'];
+    $colourInputId = $pdo->lastInsertId();
 }
 
 if ($needReplacingFormInput == 'Yes') {
