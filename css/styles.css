@@ -49,11 +49,13 @@ a, button {
     text-decoration: none;
     border-radius: 1rem;
     border: 0;
+    transition: background-color 1s, color 1s;
 }
 
 a:hover, button:hover {
     background-color: var(--colour7);
     color: var(--colour3);
+
 }
 
 section {
