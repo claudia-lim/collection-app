@@ -1,7 +1,7 @@
 <?php
 
 class ColourHydrator {
-    public static function fetchAllColours ($pdo) {
+    public static function fetchAllColours (PDO $pdo):array {
         $queryFetchColours = $pdo->prepare(
             'SELECT `name` AS "colour_name", `id` AS "colour_id"
 FROM `colours`
