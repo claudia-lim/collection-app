@@ -25,7 +25,7 @@ $queryFetchActiveCollection = $pdo->prepare(
     ORDER BY `paints`.`id`;'
 );
 $queryFetchActiveCollection->execute();
-$paints = $queryFetchActiveCollection->fetchAll(PDO::FETCH_CLASS, 'Paints');
+$paints = $queryFetchActiveCollection->fetchAll(PDO::FETCH_CLASS, Paints::class);
 
 $queryFetchColours = $pdo->prepare(
 'SELECT `name` AS "colour_name", `id` AS "colour_id"
@@ -33,7 +33,7 @@ FROM `colours`
 ORDER BY `name`;'
 );
 $queryFetchColours->execute();
-$colours = $queryFetchColours->fetchAll(PDO::FETCH_CLASS, 'Colour');
+$colours = $queryFetchColours->fetchAll(PDO::FETCH_CLASS, Colour::class);
 foreach ($colours as $colour) {
     $colourList[$colour->getColourId()] = $colour->getColour();
 }
@@ -43,7 +43,7 @@ FROM `brands`
 ORDER BY `name`;'
 );
 $queryFetchBrands->execute();
-$brands = $queryFetchBrands->fetchAll(PDO::FETCH_CLASS, 'Brand');
+$brands = $queryFetchBrands->fetchAll(PDO::FETCH_CLASS, Brand::class);
 foreach ($brands as $brand) {
     $brandList[$brand->getBrandId()] = $brand->getBrand();
 }
@@ -60,4 +60,4 @@ $queryFetchArchivedPaints = $pdo->prepare( 'SELECT `paints`.`id`, `brands`.`name
     WHERE `deleted` = 1
     ORDER BY `paints`.`id`;');
 $queryFetchArchivedPaints->execute();
-$paintsArchive = $queryFetchArchivedPaints->fetchAll(PDO::FETCH_CLASS, 'Paints');
+$paintsArchive = $queryFetchArchivedPaints->fetchAll(PDO::FETCH_CLASS, Paints::class);
